@@ -1,5 +1,5 @@
 server:
-  port: 5000
+  port: ${PORT:5000}
 
 spring:
   application:
@@ -7,26 +7,32 @@ spring:
   config:
     import: configserver:https://api-cloud-config.herokuapp.com
   cloud:
+    discovery:
+      enabled: true
     gateway:
       routes:
         - id: USER-SERVICE
           uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: USER-SERVICE
-                fallbackUri: forward:/user-service
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: USER-SERVICE
+#                fallbackUri: forward:/user-service
         - id: DEPARTMENT-SERVICE
           uri: lb://DEPARTMENT-SERVICE
           predicates:
             - Path=/departments/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: DEPARTMENT-SERVICE
-                fallbackUri: forward:/department-service
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: DEPARTMENT-SERVICE
+#                fallbackUri: forward:/department-service
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
     config:
       enabled: true
       name: application
