@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: API-GATEWAY
+  config:
+    import: configserver:https://api-cloud-config.herokuapp.com
   cloud:
     gateway:
       routes:
@@ -25,6 +27,11 @@ spring:
               args:
                 name: DEPARTMENT-SERVICE
                 fallbackUri: forward:/department-service
+    config:
+      enabled: true
+      name: application
+      profile: dev
+      label: master
 
 hystrix:
   command:
@@ -33,12 +40,3 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 4000
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
