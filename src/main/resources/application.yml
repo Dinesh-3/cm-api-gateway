@@ -30,7 +30,7 @@ spring:
     config:
       enabled: true
       name: application
-      profile: prod
+      profile: dev
       label: master
 
 hystrix:
