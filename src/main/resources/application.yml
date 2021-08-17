@@ -46,3 +46,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 4000
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
