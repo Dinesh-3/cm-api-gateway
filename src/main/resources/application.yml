@@ -34,19 +34,10 @@ spring:
 #          enabled: true
 #          lower-case-service-id: true
     config:
-      enabled: false
-      name: application
+      enabled: true
+      name: cloudgateway
       profile: prod
       label: master
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://api-service-registry.herokuapp.com/eureka
-  instance:
-    hostname: api-service-registry.herokuapp.com
 
 hystrix:
   command:
