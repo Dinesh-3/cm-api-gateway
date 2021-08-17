@@ -4,11 +4,11 @@ server:
 spring:
   application:
     name: API-GATEWAY
-  config:
-    import: configserver:https://api-cloud-config.herokuapp.com
+#  config:
+#    import: configserver:https://api-cloud-config.herokuapp.com
   cloud:
-    discovery:
-      enabled: true
+#    discovery:
+#      enabled: true
     gateway:
       routes:
         - id: USER-SERVICE
@@ -29,15 +29,24 @@ spring:
               args:
                 name: DEPARTMENT-SERVICE
                 fallbackUri: forward:/department-service
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-    config:
-      enabled: true
-      name: application
-      profile: prod
-      label: master
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+#    config:
+#      enabled: false
+#      name: application
+#      profile: prod
+#      label: master
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://api-service-registry.herokuapp.com/eureka
+  instance:
+    hostname: api-service-registry.herokuapp.com
 
 hystrix:
   command:
