@@ -4,8 +4,8 @@ server:
 spring:
   application:
     name: API-GATEWAY
-#  config:
-#    import: configserver:https://api-cloud-config.herokuapp.com
+  config:
+    import: configserver:https://api-cloud-config.herokuapp.com
   cloud:
 #    discovery:
 #      enabled: true
@@ -33,11 +33,11 @@ spring:
 #        locator:
 #          enabled: true
 #          lower-case-service-id: true
-#    config:
-#      enabled: false
-#      name: application
-#      profile: prod
-#      label: master
+    config:
+      enabled: false
+      name: application
+      profile: prod
+      label: master
 
 eureka:
   client:
