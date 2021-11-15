@@ -5,7 +5,7 @@ spring:
   application:
     name: API-GATEWAY
   config:
-    import: configserver:https://api-cloud-config.herokuapp.com
+    import: configserver:http://localhost:5005
   cloud:
     gateway:
       routes:
